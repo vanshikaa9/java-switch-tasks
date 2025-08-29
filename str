@@ -1,0 +1,19 @@
+public class ImplementStrStr28 {
+    public int strStr(String haystack, String needle) {
+        if (needle == null || needle.length() == 0) return 0;
+        if (haystack == null || haystack.length() == 0 || haystack.length() < needle.length()) return -1;
+
+        int i = 0;
+        while (i <= haystack.length() - needle.length()) {
+            int j = 0;
+            int t = i;
+            while (j < needle.length() && haystack.charAt(t) == needle.charAt(j)) {
+                j++;
+                t++;
+            }
+            if (j == needle.length()) return i;
+            i++;
+        }
+
+        return -1;
+    }

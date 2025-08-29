@@ -1,0 +1,38 @@
+public class ValidParentheses {
+    public boolean isValid(String s) {
+        char[] chars = s.toCharArray();
+
+        Stack st = new Stack();
+
+        for (char c: chars) {
+
+            if (isBackP(c)) {
+                if (st.empty()) {
+                    return false;
+                } else {
+                    char top = (char) st.pop();
+                    if (c != top) {
+                        return false;
+                    }
+                }
+            } else {
+                st.push(pair(c));
+            }
+        }
+
+        return st.empty();
+    }
+
+    private boolean isBackP(char c) {
+        return c == '}' || c == ']' || c == ')';
+    }
+
+    private char pair(char c) {
+        if (c == '{') {
+            return '}';
+        } else if (c == '[') {
+            return ']';
+        } else {
+            return ')';
+        }
+    }
